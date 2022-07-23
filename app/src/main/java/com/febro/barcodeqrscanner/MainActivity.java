@@ -28,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void scanCode() {
         ScanOptions options = new ScanOptions();
-        options.setPrompt("Volume up to flash on");
+        options.setPrompt("Basta escanear o código de barra da embalagem do chip");
         options.setBeepEnabled(true);
-        options.setOrientationLocked(true);
+        options.setOrientationLocked(false);
         options.setCaptureActivity(CaptureAct.class);
         barLauncher.launch(options);
     }
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
         if(result.getContents() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("Result");
+            builder.setTitle("Resultado do Código");
             builder.setMessage(result.getContents());
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
